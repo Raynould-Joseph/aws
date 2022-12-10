@@ -1,0 +1,6 @@
+customhost = "database-1.cu8dukqwt2x4.us-east-1.rds.amazonaws.com"
+customuser = "admin"
+custompass = "admin123"
+customdb = "kundi"
+custombucket = "add-employee-2022"
+customregion = "us-east-1"
