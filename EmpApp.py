@@ -44,7 +44,8 @@ def AddEmp():
     # AI module
     stext = "Name: "+name + "\nInterest: "+interest + "\nEvent_Name: "+eventname + "\nDuration: "+duration + "\nVenue: "+venue +"\nDate: "+date +"\n\nOutput: "
     
-    openai.api_key = "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"
+    openai.api_key = "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"
+    # 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"
     response = openai.Completion.create( 
         engine = "davinci:ft-personal:halfscenarios-model-2022-11-25-19-52-19",
         prompt=stext,
