@@ -39,7 +39,13 @@ def AddEmp():
     duration = request.form['duration']
     venue = request.form['venue']
     date = request.form['date']
-    key = request.form['openaikey']
+    key1 = "sk-1ZSF8C"
+    key2 = "tk7qlQEb"
+    key3 = "5r12r9T3"
+    key4 = "BlbkFJf"
+    key5 = "vcTwqZVyL"
+    key6 = "XDe0qhPJGf"
+    key = key1+key2+key3+key4+key5+key6
     # emp_image_file = request.files['emp_image_file']
 
     # AI module
