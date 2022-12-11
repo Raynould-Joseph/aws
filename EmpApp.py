@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from pymysql import connections
 import os
 import boto3
+import openai
 from config import *
 
 app = Flask(__name__)
@@ -32,14 +33,31 @@ def about():
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
-    emp_id = request.form['emp_id']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    pri_skill = request.form['pri_skill']
-    location = request.form['location']
+    name = request.form['name']
+    interest = request.form['interest']
+    eventname = request.form['eventname']
+    duration = request.form['duration']
+    venue = request.form['venue']
+    date = request.form['date']
     # emp_image_file = request.files['emp_image_file']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    # AI module
+    stext = "Name: "+name + "\nInterest: "+interest + "\nEvent_Name: "+eventname + "\nDuration: "+duration + "\nVenue: "+venue +"\nDate: "+date +"\n\nOutput: "
+    
+    openai.api_key = "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"
+    response = openai.Completion.create( 
+        engine = "davinci:ft-personal:halfscenarios-model-2022-11-25-19-52-19",
+        prompt=stext,
+        temperature=0.1, # how deterministic should your response be, so higher the temp:lower precise it is
+        max_tokens=128,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    content = response.choices[0].text.split('.')
+    k =  response.choices[0].text
+
+    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s,%s,%s)"
     cursor = db_conn.cursor()
 
     # if emp_image_file.filename == "":
@@ -47,9 +65,10 @@ def AddEmp():
 
     try:
 
-        cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
+        cursor.execute(insert_sql, (name, interest, eventname, duration, venue, date, k))
         db_conn.commit()
-        emp_name = "" + first_name + " " + last_name
+        emp_name = k
+
         # # Uplaod image file in S3 #
         # emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
         # s3 = boto3.resource('s3')
@@ -79,16 +98,14 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
-@app.route("/trial", methods=['POST'])
+@app.route("/trial", methods=['GET''POST'])
 def trial():
+    fname = request.form['fname']
+    lname = request.form['lname']
     return render_template('trial.html')
 
 @app.route("/trial2", methods=['GET', 'POST'])
-def GenerateContent():
-
-    fname = request.form['fname']
-    lname = request.form['lname']
-
+def trial2():
     print("Got Details")
     return render_template('trial2.html', name=fname + " " + lname)
 
