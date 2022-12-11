@@ -42,12 +42,11 @@ def AddEmp():
     # emp_image_file = request.files['emp_image_file']
 
     # AI module
-    stext = "Name: "+name + "\nInterest: "+interest + "\nEvent_Name: "+eventname + "\nDuration: "+duration + "\nVenue: "+venue +"\nDate: "+date +"\n\nOutput: "
-    
-    openai.api_key = "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"
-    # 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"
+    # stext = "Name: "+name + "\nInterest: "+interest + "\nEvent_Name: "+eventname + "\nDuration: "+duration + "\nVenue: "+venue +"\nDate: "+date +"\n\nOutput: "
+    stext ="Generate a mail to "+name+" inviting him to a "+duration+", "+interest+" Hackathon"
+    openai.api_key = "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"
     response = openai.Completion.create( 
-        engine = "davinci:ft-personal:halfscenarios-model-2022-11-25-19-52-19",
+        engine = "text-davinci-003",
         prompt=stext,
         temperature=0.1, # how deterministic should your response be, so higher the temp:lower precise it is
         max_tokens=128,
