@@ -35,7 +35,7 @@ def about():
 def AddEmp():
     name = request.form['name']
     interest = request.form['interest']
-    eventname = request.form['eventname']
+    eventname = request.form['event_name']
     duration = request.form['duration']
     venue = request.form['venue']
     date = request.form['date']
