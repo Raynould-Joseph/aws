@@ -39,12 +39,13 @@ def AddEmp():
     duration = request.form['duration']
     venue = request.form['venue']
     date = request.form['date']
+    key = request.form['openaikey']
     # emp_image_file = request.files['emp_image_file']
 
     # AI module
     # stext = "Name: "+name + "\nInterest: "+interest + "\nEvent_Name: "+eventname + "\nDuration: "+duration + "\nVenue: "+venue +"\nDate: "+date +"\n\nOutput: "
     stext ="Generate a mail to "+name+" inviting him to a "+duration+", "+interest+" Hackathon"
-    openai.api_key = "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"
+    openai.api_key = key
     response = openai.Completion.create( 
         engine = "text-davinci-003",
         prompt=stext,
