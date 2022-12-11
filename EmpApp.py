@@ -79,7 +79,11 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
-@app.route("/generate", methods=['POST'])
+@app.route("/trial", methods=['POST'])
+def trial():
+    return render_template('trial.html')
+
+@app.route("/trial2", methods=['GET', 'POST'])
 def GenerateContent():
 
     fname = request.form['fname']
