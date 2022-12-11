@@ -79,6 +79,15 @@ def AddEmp():
     print("all modification done...")
     return render_template('AddEmpOutput.html', name=emp_name)
 
+@app.route("/generate", methods=['POST'])
+def GenerateContent():
+
+    fname = request.form['fname']
+    lname = request.form['lname']
+
+    print("Got Details")
+    return render_template('trial2.html', name=fname + " " + lname)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
