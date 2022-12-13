@@ -30,11 +30,11 @@ def home():
 def about():
     return render_template('www.intellipaat.com')
 
+
+@app.route("/index", methods=['POST'])
 def goback():
     return render_template('index.html')
 
-
-@app.route("/index", methods=['POST'])
 def index():
     name = request.form['name']
     interest = request.form['interest']
