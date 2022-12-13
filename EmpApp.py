@@ -30,6 +30,9 @@ def home():
 def about():
     return render_template('www.intellipaat.com')
 
+def goback():
+    return render_template('index.html')
+
 
 @app.route("/index", methods=['POST'])
 def index():
