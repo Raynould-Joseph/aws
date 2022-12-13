@@ -32,9 +32,6 @@ def about():
 
 
 @app.route("/index", methods=['POST'])
-def goback():
-    return render_template('index.html')
-
 def index():
     name = request.form['name']
     interest = request.form['interest']
