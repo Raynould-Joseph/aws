@@ -23,7 +23,7 @@ table = 'employee'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('AddEmp.html')
+    return render_template('index.html')
 
 
 @app.route("/about", methods=['POST'])
@@ -31,8 +31,8 @@ def about():
     return render_template('www.intellipaat.com')
 
 
-@app.route("/addemp", methods=['POST'])
-def AddEmp():
+@app.route("/index", methods=['POST'])
+def index():
     name = request.form['name']
     interest = request.form['interest']
     eventname = request.form['event_name']
@@ -74,7 +74,7 @@ def AddEmp():
 
         cursor.execute(insert_sql, (name, interest, eventname, duration, venue, date, k))
         db_conn.commit()
-        emp_name = k
+        content = k
 
         # # Uplaod image file in S3 #
         # emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
@@ -103,19 +103,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
-
-@app.route("/trial", methods=['GET''POST'])
-def trial():
-    fname = request.form['fname']
-    lname = request.form['lname']
-    return render_template('trial.html')
-
-@app.route("/trial2", methods=['GET', 'POST'])
-def trial2():
-    print("Got Details")
-    return render_template('trial2.html', name=fname + " " + lname)
-
+    return render_template('output.html', content=content)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
