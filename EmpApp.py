@@ -50,7 +50,7 @@ def index():
 
     # AI module
     # stext = "Name: "+name + "\nInterest: "+interest + "\nEvent_Name: "+eventname + "\nDuration: "+duration + "\nVenue: "+venue +"\nDate: "+date +"\n\nOutput: "
-    stext ="Generate a mail to "+name+" inviting him to a "+duration+", "+interest+" Hackathon"
+    stext ="Generate a mail to "+name+" inviting him to a "+duration+", "+interest+" Hackathon conducted by "+venue+" on "+date+". Subject of the email should be "+eventname+"."
     openai.api_key = key
     response = openai.Completion.create( 
         engine = "text-davinci-003",
