@@ -1,5 +1,5 @@
-# customhost = "database-1.c3eu1fpa4ajz.us-east-1.rds.amazonaws.com"
-customhost = "database-2.c3eu1fpa4ajz.us-east-1.rds.amazonaws.com"
+customhost = "database-1.c3eu1fpa4ajz.us-east-1.rds.amazonaws.com"
+# customhost = "database-2.c3eu1fpa4ajz.us-east-1.rds.amazonaws.com"
 customuser = "admin"
 custompass = "admin123"
 customdb = "employee"
